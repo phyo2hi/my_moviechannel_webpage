@@ -1,0 +1,936 @@
+/* Cinema မြို့ | Responsive semantic HTML/CSS movie landing page */
+/* 1. Brand colors and shared design tokens. */
+:root {
+  color-scheme: dark;
+  --bg: #0f0e13;
+  --surface: #19171f;
+  --wine: #6b1d2f;
+  --wine2: #8a223a;
+  --gold: #d4af37;
+  --cream: #f5f5f7;
+  --muted: #a0a0ab;
+  --line: #ffffff18;
+  --max: 1200px;
+}
+/* 2. Base styles shared by both pages. */
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--cream);
+  font:
+    16px/1.55 Inter,
+    system-ui,
+    "Segoe UI",
+    sans-serif;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+input {
+  font: inherit;
+}
+/* 3. Header, logo, navigation, search, and sign-in controls. */
+.site-header {
+  min-height: 80px;
+  padding: 14px max(5vw, calc((100vw - var(--max)) / 2));
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  border-bottom: 1px solid var(--line);
+  background: #0f0e13;
+  position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.brand b {
+  color: var(--gold);
+}
+.brand-mark .logo {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  place-items: center;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  background: radial-gradient(circle, #30202a, var(--wine));
+  box-shadow: 0 0 20px #6b1d2f55;
+
+  object-fit: cover;
+}
+
+nav {
+  display: flex;
+  gap: clamp(14px, 2vw, 28px);
+  margin-left: auto;
+  position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+nav a {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+nav a:hover,
+nav .active,
+.gold {
+  color: var(--gold);
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.search {
+  display: flex;
+  align-items: center;
+  width: clamp(150px, 18vw, 220px);
+  padding: 0 10px 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: var(--surface);
+}
+.search input {
+  width: 100%;
+  min-width: 0;
+  padding: 9px 0;
+  border: 0;
+  outline: 0;
+  color: var(--cream);
+  background: none;
+}
+.search button {
+  border: 0;
+  background: none;
+  color: var(--gold);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.sign-in {
+  padding: 8px 16px;
+  border: 1px solid var(--wine2);
+  border-radius: 99px;
+}
+.sign-in:hover {
+  background: var(--wine);
+}
+/* Shared max-width and spacing for the homepage hero and content sections. */
+.hero,
+.section {
+  max-width: var(--max);
+  margin: auto;
+  padding: 48px 5vw;
+}
+.hero {
+  min-height: 385px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 35px;
+}
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+h1 {
+  margin-bottom: 15px;
+  font-size: clamp(2.5rem, 5vw, 4.3rem);
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+}
+h1 em {
+  color: var(--gold);
+  font-style: normal;
+}
+.muted {
+  color: var(--muted);
+}
+.button {
+  display: inline-flex;
+  margin-top: 10px;
+  padding: 12px 20px;
+  border-radius: 99px;
+  background: var(--gold);
+  color: #17120a;
+  font-weight: 800;
+}
+.button:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+.hero-art {
+  height: 265px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 48% 52% 43% 57%;
+  background: radial-gradient(
+    ellipse at center,
+    #8a223a,
+    #451827 40%,
+    #17131b 75%
+  );
+}
+.hero-art:before,
+.hero-art:after {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 340px;
+  border: 1px solid #d4af3755;
+  border-radius: 50%;
+  transform: rotate(36deg);
+}
+.hero-art:after {
+  width: 300px;
+  transform: rotate(-37deg);
+}
+.hero-art span {
+  z-index: 1;
+  color: var(--gold);
+  font-size: 5rem;
+  text-shadow: 0 0 40px #d4af37;
+}
+.hero-art small {
+  position: absolute;
+  right: 10%;
+  bottom: 12%;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-align: right;
+}
+/* 5. Homepage movie collection and poster cards. */
+.section {
+  padding-top: 28px;
+  padding-bottom: 60px;
+}
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.section-head h2,
+.detail h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: -0.04em;
+}
+.section-head .eyebrow {
+  margin-bottom: 3px;
+}
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.poster {
+  min-height: 300px;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  transition: 0.25s;
+}
+.poster:before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: linear-gradient(180deg, #08070a20, transparent 38%, #08070ae8);
+}
+.poster:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 36px #0008;
+}
+.poster small {
+  color: #fff9;
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+.poster small:last-child {
+  color: var(--gold);
+}
+.poster strong {
+  font:
+    700 clamp(1.7rem, 2.5vw, 2.6rem)/0.96 Georgia,
+    serif;
+  text-shadow: 0 3px 15px #0008;
+}
+.poster-one {
+  background:
+    radial-gradient(ellipse at 48% 28%, #efb56b, transparent 25%),
+    linear-gradient(145deg, #5d2d35, #161625 57%, #172b37);
+}
+.poster-two {
+  background:
+    radial-gradient(ellipse at 72% 32%, #f5be59, transparent 19%),
+    linear-gradient(140deg, #d77b53, #542c47 55%, #171620);
+}
+.poster-three {
+  background:
+    radial-gradient(circle at 50% 34%, #b8d4d1, transparent 9%),
+    radial-gradient(ellipse at 55% 38%, #466574, transparent 39%),
+    linear-gradient(155deg, #111829, #28414b 60%, #101016);
+}
+.poster-four {
+  background:
+    radial-gradient(circle at 50% 32%, #ffe68c, transparent 10%),
+    radial-gradient(ellipse at 50% 38%, #f09f65, transparent 35%),
+    linear-gradient(150deg, #8e4052, #4c315c 60%, #1b1830);
+}
+.movie-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 12px;
+}
+.movie-meta h3 {
+  margin: 0;
+  font-size: 0.98rem;
+}
+.movie-meta p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.movie-meta .gold {
+  white-space: nowrap;
+  font-weight: 800;
+  font-size: 0.83rem;
+}
+.card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 9px;
+}
+.card-foot span {
+  padding: 4px 8px;
+  border: 1px solid #d4af3750;
+  border-radius: 99px;
+  color: var(--gold);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+}
+.card-foot button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--cream);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.card-foot button:hover {
+  color: #f06a7f;
+}
+/* 6. Movie-detail layout styles (reserved for a future detail feature). */
+.detail {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.72fr) 1.28fr;
+  align-items: center;
+  gap: clamp(28px, 6vw, 70px);
+  padding: clamp(24px, 5vw, 55px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 16% 50%, #592034aa, transparent 42%),
+    linear-gradient(130deg, #1c1921, #141219);
+}
+.detail-poster {
+  min-height: 320px;
+  display: grid;
+  align-content: end;
+  justify-content: center;
+  padding-bottom: 35px;
+  border: 1px solid #d4af3750;
+  border-radius: 15px;
+  background:
+    radial-gradient(circle at 50% 35%, #ffe393, transparent 8%),
+    radial-gradient(ellipse at 50% 42%, #ed9c64, transparent 32%),
+    linear-gradient(150deg, #87374e, #43345c 58%, #17162a);
+  box-shadow: 0 18px 45px #0007;
+  font:
+    700 2.4rem/0.95 Georgia,
+    serif;
+  text-align: center;
+  text-shadow: 0 3px 15px #000;
+}
+.review {
+  max-width: 570px;
+  margin: 22px 0 16px;
+  color: var(--muted);
+}
+.review b {
+  color: var(--cream);
+}
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.genres span {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  color: #e1dfe6;
+  background: #ffffff08;
+  font-size: 0.76rem;
+}
+.screens-title {
+  margin: 26px 0 13px;
+  font-size: 1.05rem;
+}
+.screens {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.scene {
+  min-height: 145px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+}
+.scene-one {
+  background:
+    radial-gradient(circle at 55% 55%, #e7aa61, transparent 5%),
+    linear-gradient(155deg, #23332d, #1a2028 46%, #633348);
+}
+.scene-two {
+  background:
+    radial-gradient(ellipse at 50% 38%, #ffd580, transparent 18%),
+    linear-gradient(180deg, #db8e69, #915068 55%, #263344);
+}
+.scene-three {
+  background:
+    radial-gradient(circle at 70% 27%, #ffdc83, transparent 7%),
+    radial-gradient(ellipse at 60% 42%, #80557d, transparent 40%),
+    linear-gradient(150deg, #1c253c, #51354e);
+}
+/* 7. Shared footer. */
+footer {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 38px max(5vw, calc((100vw - var(--max)) / 2));
+  border-top: 1px solid var(--line);
+  background: #0b0a0e;
+}
+.welcome p {
+  margin: 0 0 5px;
+  color: var(--muted);
+}
+.welcome p:first-child {
+  color: var(--cream);
+  font-weight: 700;
+}
+.footer-links {
+  display: grid;
+  gap: 6px;
+}
+.footer-links h3 {
+  margin: 0;
+  color: var(--gold);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.footer-links a {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.copyright {
+  grid-column: 1/-1;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+  color: #777680;
+}
+/* Accessibility helper: keeps labels available to screen readers. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+/* 8. Tablet and compact desktop layout. */
+@media (max-width: 900px) {
+  /* 3. Header, logo, navigation, search, and sign-in controls. */
+  .site-header {
+    flex-wrap: wrap;
+    gap: 14px 22px;
+    padding-inline: 5vw;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
+  nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
+  .header-actions {
+    margin-left: auto;
+  }
+  .movie-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .poster {
+    min-height: 340px;
+  }
+}
+/* 9. Mobile layout. */
+@media (max-width: 600px) {
+  /* 3. Header, logo, navigation, search, and sign-in controls. */
+  .site-header {
+    padding: 14px 5vw;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
+  .header-actions {
+    width: 100%;
+    margin: 0;
+  }
+  .search {
+    flex: 1;
+  }
+  nav {
+    justify-content: flex-start;
+    gap: 18px;
+    overflow-x: auto;
+    padding: 3px 0 7px;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
+  nav a {
+    font-size: 0.82rem;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 40px;
+    padding-bottom: 35px;
+  }
+  .hero-art {
+    height: 205px;
+  }
+  /* 5. Homepage movie collection and poster cards. */
+  .section {
+    padding-inline: 5vw;
+  }
+  .movie-grid {
+    gap: 18px 12px;
+  }
+  .poster {
+    min-height: 240px;
+    padding: 13px;
+    border-radius: 13px;
+  }
+  .poster small {
+    font-size: 0.45rem;
+  }
+  .poster strong {
+    font-size: clamp(1.4rem, 7vw, 2.1rem);
+  }
+  .movie-meta {
+    display: block;
+  }
+  .movie-meta .gold {
+    display: inline-block;
+    margin-top: 4px;
+  }
+  /* 6. Movie-detail layout styles (reserved for a future detail feature). */
+  .detail {
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+  .detail-poster {
+    min-height: 250px;
+  }
+  .screens {
+    grid-template-columns: 1fr;
+  }
+  .scene {
+    min-height: 180px;
+  }
+  /* 7. Shared footer. */
+  footer {
+    grid-template-columns: 1fr 1fr;
+    padding-inline: 5vw;
+  }
+  .welcome {
+    grid-column: 1/-1;
+    grid-row: 2;
+  }
+  .copyright {
+    grid-column: 1/-1;
+  }
+}
+/* 10. Narrow phone layout. */
+@media (max-width: 360px) {
+  .movie-grid {
+    grid-template-columns: 1fr;
+  }
+  .poster {
+    min-height: 360px;
+  }
+  .section-head {
+    align-items: start;
+    gap: 10px;
+  }
+}
+/* 11. Reserved movie-detail styles; current movie cards are display-only. */
+.movie-page {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 24px 5vw 55px;
+}
+.back-link {
+  display: inline-block;
+  margin: 0 0 18px;
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+.back-link:hover {
+  text-decoration: underline;
+}
+.detail-page {
+  grid-template-columns: minmax(260px, 0.75fr) 1.25fr;
+  min-height: 430px;
+}
+.detail-page .detail-poster {
+  min-height: 360px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.detail-page .detail-poster:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(180deg, #08070a10, transparent 35%, #08070ae8);
+}
+.detail-page .detail-poster span {
+  align-self: end;
+  padding: 0 16px 30px;
+  font:
+    700 clamp(2rem, 4vw, 3rem)/0.95 Georgia,
+    serif;
+  text-shadow: 0 3px 15px #000;
+}
+.detail-page .detail-poster.poster-one {
+  background:
+    radial-gradient(ellipse at 48% 28%, #efb56b, transparent 25%),
+    linear-gradient(145deg, #5d2d35, #161625 57%, #172b37);
+}
+.detail-page .detail-poster.poster-two {
+  background:
+    radial-gradient(ellipse at 72% 32%, #f5be59, transparent 19%),
+    linear-gradient(140deg, #d77b53, #542c47 55%, #171620);
+}
+.detail-page .detail-poster.poster-three {
+  background:
+    radial-gradient(circle at 50% 34%, #b8d4d1, transparent 9%),
+    radial-gradient(ellipse at 55% 38%, #466574, transparent 39%),
+    linear-gradient(155deg, #111829, #28414b 60%, #101016);
+}
+.detail-page .detail-poster.poster-four {
+  background:
+    radial-gradient(circle at 50% 32%, #ffe68c, transparent 10%),
+    radial-gradient(ellipse at 50% 38%, #f09f65, transparent 35%),
+    linear-gradient(150deg, #8e4052, #4c315c 60%, #1b1830);
+}
+.detail-copy h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+}
+.movie-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: center;
+  color: var(--muted);
+}
+.movie-gallery {
+  padding-top: 30px;
+}
+.movie-gallery h2 {
+  font-size: 1.2rem;
+}
+.movie-gallery .scene {
+  min-height: 190px;
+}
+/* Responsive adjustments for the reserved movie-detail layout. */
+@media (max-width: 900px) {
+  .detail-page {
+    grid-template-columns: minmax(220px, 0.8fr) 1.2fr;
+    gap: 28px;
+  }
+  .detail-page .detail-poster {
+    min-height: 320px;
+  }
+}
+/* Mobile adjustments for the reserved movie-detail layout. */
+@media (max-width: 600px) {
+  .movie-page {
+    padding: 20px 5vw 40px;
+  }
+  .detail-page {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 18px;
+  }
+  .detail-page .detail-poster {
+    min-height: 280px;
+  }
+  .movie-facts {
+    gap: 7px 13px;
+  }
+  .movie-gallery .screens {
+    grid-template-columns: 1fr;
+  }
+  .movie-gallery .scene {
+    min-height: 190px;
+  }
+}
+.movie-meta h3 a:hover {
+  color: var(--gold);
+}
+/* 12. About page hero and layout. */
+.about-page {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 30px 5vw 65px;
+}
+.about-hero {
+  position: relative;
+  min-height: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 42px clamp(24px, 6vw, 70px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 82% 50%, #6b1d2f88, transparent 36%),
+    linear-gradient(120deg, #1d1922, #141219);
+}
+.about-hero h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 12px;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+.about-hero h1 em {
+  color: var(--gold);
+  font-style: normal;
+}
+.about-intro {
+  position: relative;
+  z-index: 1;
+  max-width: 480px;
+  margin: 0;
+  color: var(--muted);
+}
+.about-brand-art {
+  position: absolute;
+  right: 12%;
+  top: 50%;
+  width: 170px;
+  height: 170px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 2px solid #d4af3788;
+  border-radius: 50%;
+  background: radial-gradient(circle, #572132, #17131b);
+  box-shadow: 0 0 70px #8a223a55;
+  font-size: 4rem;
+}
+.community {
+  padding-top: 55px;
+}
+.community-heading {
+  max-width: 620px;
+  margin-bottom: 24px;
+}
+.community-heading h2 {
+  margin-bottom: 7px;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+.community-heading .muted {
+  margin: 0;
+}
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.community-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 280px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #1c1921, #141219);
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+.community-card:hover {
+  transform: translateY(-4px);
+  border-color: #d4af3755;
+}
+.community-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #d4af3755;
+  border-radius: 14px;
+  background: #6b1d2f44;
+  color: var(--gold);
+  font-size: 1.25rem;
+}
+.community-card .eyebrow {
+  margin-bottom: 5px;
+}
+.community-card h3 {
+  margin-bottom: 9px;
+  font-size: 1.1rem;
+}
+.community-card .muted {
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+.community-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-top: auto;
+  padding: 11px 14px;
+  border: 1px solid #d4af3766;
+  border-radius: 10px;
+  background: #d4af3710;
+  color: var(--gold);
+  font-size: 0.88rem;
+  font-weight: 750;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.community-button:hover {
+  background: var(--gold);
+  color: #17120a;
+}
+.about-note {
+  margin-top: 45px;
+  padding: 24px;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 14px 14px 0;
+  background: var(--surface);
+}
+.about-note p {
+  margin: 0 0 5px;
+}
+.about-note p:last-child {
+  margin: 0;
+  color: var(--muted);
+}
+/* About page: switch community cards to two columns on tablets. */
+@media (max-width: 800px) {
+  .community-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .community-card:last-child {
+    grid-column: 1/-1;
+  }
+}
+/* 9. Mobile layout. */
+@media (max-width: 600px) {
+  .about-page {
+    padding: 20px 5vw 45px;
+  }
+  .about-hero {
+    min-height: 300px;
+    padding: 30px 24px;
+  }
+  .about-brand-art {
+    right: -34px;
+    top: 24px;
+    width: 120px;
+    height: 120px;
+    transform: none;
+    opacity: 0.48;
+    font-size: 3rem;
+  }
+  .about-hero h1,
+  .about-intro {
+    max-width: 85%;
+  }
+  .community {
+    padding-top: 40px;
+  }
+  .community-grid {
+    grid-template-columns: 1fr;
+  }
+  .community-card:last-child {
+    grid-column: auto;
+  }
+  .community-card {
+    min-height: 250px;
+  }
+}
