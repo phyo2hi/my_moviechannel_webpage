@@ -47,8 +47,8 @@ input {
   border-bottom: 1px solid var(--line);
   background: #0f0e13;
   position: sticky;
-    top: 0;
-    z-index: 9999;
+  top: 0;
+  z-index: 9999;
 }
 .brand {
   display: flex;
@@ -79,8 +79,8 @@ nav {
   gap: clamp(14px, 2vw, 28px);
   margin-left: auto;
   position: sticky;
-    top: 0;
-    z-index: 9999;
+  top: 0;
+  z-index: 9999;
 }
 nav a {
   color: var(--muted);
@@ -146,7 +146,7 @@ nav .active,
 .eyebrow {
   margin: 0 0 8px;
   color: var(--gold);
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: 800;
   letter-spacing: 0.17em;
 }
@@ -177,25 +177,30 @@ h1 em {
   background: var(--gold);
   color: #17120a;
   font-weight: 800;
+  transition: 0.25s;
 }
 .button:hover {
   filter: brightness(1.12);
   transform: translateY(-1px);
 }
 .hero-art {
-  height: 265px;
-  position: relative;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  border-radius: 10%;
+  border: 1px solid #d4af37;
   overflow: hidden;
-  border-radius: 48% 52% 43% 57%;
-  background: radial-gradient(
-    ellipse at center,
-    #8a223a,
-    #451827 40%,
-    #17131b 75%
-  );
+  padding: 45px;
 }
+.hero-art .doomsday {
+  
+  width: 600px;
+  height:800px;
+  object-fit: cover;
+  padding: 20px;
+}
+
 .hero-art:before,
 .hero-art:after {
   content: "";
@@ -205,10 +210,16 @@ h1 em {
   border: 1px solid #d4af3755;
   border-radius: 50%;
   transform: rotate(36deg);
+  
 }
 .hero-art:after {
   width: 300px;
   transform: rotate(-37deg);
+}
+.hero-art:hover{
+    filter: brightness(1.12);
+  transform: translateY(-1px);
+  transition: 0.30s;
 }
 .hero-art span {
   z-index: 1;
