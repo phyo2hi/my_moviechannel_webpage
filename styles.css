@@ -90,6 +90,12 @@ nav a:hover,
 nav .active,
 .gold {
   color: var(--gold);
+  
+
+}
+.gold:hover{
+  filter: brightness(1.5);
+ 
 }
 .header-actions {
   display: flex;
