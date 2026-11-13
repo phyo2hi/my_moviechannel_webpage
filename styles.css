@@ -57,7 +57,6 @@ input {
   font-size: 1.4rem;
   font-weight: 800;
   white-space: nowrap;
-
 }
 .brand b {
   color: var(--gold);
@@ -91,12 +90,9 @@ nav a:hover,
 nav .active,
 .gold {
   color: var(--gold);
-  
-
 }
-.gold:hover{
+.gold:hover {
   filter: brightness(1.5);
- 
 }
 .header-actions {
   display: flex;
@@ -201,9 +197,8 @@ h1 em {
   padding: 45px;
 }
 .hero-art .doomsday {
-  
   width: 600px;
-  height:800px;
+  height: 800px;
   object-fit: cover;
   padding: 20px;
 }
@@ -217,16 +212,15 @@ h1 em {
   border: 1px solid #d4af3755;
   border-radius: 50%;
   transform: rotate(36deg);
-  
 }
 .hero-art:after {
   width: 300px;
   transform: rotate(-37deg);
 }
-.hero-art:hover{
-    filter: brightness(1.12);
+.hero-art:hover {
+  filter: brightness(1.12);
   transform: translateY(-1px);
-  transition: 0.30s;
+  transition: 0.3s;
 }
 .hero-art span {
   z-index: 1;
@@ -306,16 +300,13 @@ h1 em {
     serif;
   text-shadow: 0 3px 15px #0008;
 }
-.poster .movie_images{
-  
- position: absolute;
+.poster .movie_images {
+  position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: -2;
-
-
 }
 .poster-one {
   background:
@@ -813,8 +804,8 @@ footer {
   position: absolute;
   right: 12%;
   top: 50%;
-  width: 170px;
-  height: 170px;
+  width: 250px;
+  height: 250px;
   display: grid;
   place-items: center;
   transform: translateY(-50%);
@@ -823,6 +814,18 @@ footer {
   background: radial-gradient(circle, #572132, #17131b);
   box-shadow: 0 0 70px #8a223a55;
   font-size: 4rem;
+}
+.about-brand-art .about_logo{
+   width: 100%;
+  height: 100%;
+  display: flex;
+  place-items: center;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  background: radial-gradient(circle, #30202a, var(--wine));
+  box-shadow: 0 0 20px #6b1d2f55;
+
+  object-fit: cover;
 }
 .community {
   padding-top: 55px;
